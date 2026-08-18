@@ -1,0 +1,10 @@
+# Verified working on Python 3.9.6 with these exact versions.
+# Nothing here is version-sensitive; the pins record what was tested rather than a hard constraint.
+pandas==2.3.3
+numpy==2.0.2
+scipy==1.13.1
+matplotlib==3.9.4
+
+# To run the notebooks
+jupyterlab
+notebook

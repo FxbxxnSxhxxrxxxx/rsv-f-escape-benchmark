@@ -1,0 +1,16 @@
+# Python environment
+.venv/
+__pycache__/
+*.py[cod]
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Upstream repository, cloned locally to run notebook 01 (see README)
+RSV_Long_F_DMS/
+
+# Literature is cited by DOI in REFERENCES.md, not redistributed
+*.pdf
+
+# macOS
+.DS_Store
