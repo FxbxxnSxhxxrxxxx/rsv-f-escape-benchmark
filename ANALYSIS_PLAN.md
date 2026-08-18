@@ -16,16 +16,25 @@ reason, not silently applied.
 
 Two facts about the benchmark, both measured in `notebooks/01_build_dms_benchmark.ipynb`:
 
-**The escape signal is extremely concentrated.** Nirsevimab binds a specific epitope (~64–73 and
-~201–216). Of 3,977 Fab measurements, only 343 (8.6%) lie in that epitope — yet **93 of the 98**
-mutations with Fab escape > 1.0 are there, and the **top 50** Fab-escape mutations span only **12
-sites, all in `region_0`** (antigenic site Ø).
+**The escape signal is extremely concentrated.** Two epitope definitions are reported, because the
+choice roughly doubles the percentage and only one of them is sourced:
+
+| Definition | Of 3,977 Fab measurements | Of the 98 with Fab escape > 1.0 |
+|---|---|---|
+| **narrow** — nirsevimab contact window, sites 64–73 / 201–216 | 343 (8.6%) | 93 |
+| **`region_0`** — antigenic site Ø, as annotated by the DMS (Gilman et al., Rossey et al.) | 663 (16.7%) | 95 |
+
+The narrow window is antibody-specific but its exact bounds are not traced to a citation in this
+package; `region_0` is broader and citable. Both are reported wherever the number is used, and no
+conclusion here rests on the choice — under either definition almost every strong-escape mutation
+sits inside the epitope, and the **top 50** Fab-escape mutations span only **12 sites, all in
+`region_0`** (64, 68, 73, 201, 204–211).
 
 **EVEscape does not know about nirsevimab.** It combines an EVE evolutionary-fitness term, WCN
 structural accessibility, and amino-acid dissimilarity. The EVEscape authors describe it as
 identifying antigenic regions *"without antibody information"*.
 
-So roughly 91% of the benchmark consists of mutations where nirsevimab escape is near zero
+So 83–91% of the benchmark, depending on the definition, consists of mutations where nirsevimab escape is near zero
 essentially by construction, and where EVEscape has no reason to be low. A global Spearman ρ is
 therefore diluted by design. This is not a defect in either method — it is what happens when an
 epitope-agnostic model is scored against an antibody-specific readout. It has two consequences:
@@ -167,7 +176,7 @@ being irrelevant to nirsevimab.
 | Outcome | What may be concluded |
 |---|---|
 | Weak global ρ (\|ρ\| < 0.2), no top-k enrichment | EVEscape's RSV-A ranking does not track nirsevimab-specific escape. Given §1 this is the *expected* result and is a legitimate, reportable finding — it bounds how far an epitope-agnostic prior can substitute for antibody-specific measurement. |
-| Weak global ρ **but** clear top-k enrichment | The global coefficient is diluted by the ~91% of mutations outside the epitope; the model is still useful for triage. This would be the most informative outcome for surveillance. |
+| Weak global ρ **but** clear top-k enrichment | The global coefficient is diluted by the 83–91% of mutations outside the epitope; the model is still useful for triage. This would be the most informative outcome for surveillance. |
 | Moderate ρ (0.2–0.4) with enrichment | EVEscape carries real signal for nirsevimab escape despite having no antibody information. A strong positive result. |
 | Strong ρ (> 0.4) | Would be surprising given §1 and must be checked for an artefact — most plausibly a shared dependence on structural accessibility or site conservation — before being reported as such. |
 

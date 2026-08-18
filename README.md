@@ -163,8 +163,11 @@ repository). The EVE evolutionary indices are not reproducible without retrainin
   rank low on the single-mutation EVEscape scale (L381F, the highest among them, at the 8.7th
   percentile). Extending to RSV-B would require both the RSV-B EVEscape table *and* a comprehensive
   RSV-B DMS, which does not exist.
-* **EVEscape is antibody-agnostic; the DMS endpoint is nirsevimab-specific.** Only 8.6% of benchmark
-  rows lie in the nirsevimab epitope, yet 93 of the 98 mutations with Fab escape > 1.0 are there.
+* **EVEscape is antibody-agnostic; the DMS endpoint is nirsevimab-specific.** Only 8.6% of Fab
+  measurements lie in the narrow nirsevimab contact window (16.7% under the DMS's own broader
+  `region_0` annotation of antigenic site Ø), yet 93 of the 98 mutations with Fab escape > 1.0 are
+  in the narrow window and 95 in `region_0`. Both definitions are reported in `ANALYSIS_PLAN.md` §1,
+  since only the second is traceable to a citation.
   A modest global rank correlation is the *expected* outcome and is interpretable as such; see
   `ANALYSIS_PLAN.md`.
 * **The genetic backgrounds differ.** Even where the wildtype residue agrees, the DMS measures in the
